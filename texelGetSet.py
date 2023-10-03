@@ -21,7 +21,16 @@ def maya_main_window():
     return wrapInstance(int(main_window_ptr), QWidget)
 
 class MyWindow(QDialog):
+    '''
+    A custom QDialog class for the Texel Density Tool in Maya.
+    '''
     def __init__(self, parent=None):
+        '''
+        Initializes the Texel Density Tool dialog window.
+
+        Args:
+            parent (QWidget): The parent widget for this dialog.
+        '''
         super(MyWindow, self).__init__(parent)
 
         # Create buttons.
@@ -92,6 +101,12 @@ class MyWindow(QDialog):
     def getDistance2D(uvs):
         '''
         Return distance between two points in UV space.
+
+        Args:
+            uvs (list): A list of UV coordinates for two points.
+
+        Returns:
+            float: The distance between the two points in UV space.
         '''
         a = cmds.polyEditUV(uvs[0], q = True, u = True)
         b = cmds.polyEditUV(uvs[1], q = True, u = True)
@@ -100,6 +115,12 @@ class MyWindow(QDialog):
     def getDistance3D(verts):
         '''
         Return distance between two points in XYZ space.
+
+        Args:
+            verts (list): A list of XYZ coordinates for two points.
+
+        Returns:
+            float: The distance between the two points in XYZ space.
         '''
         a = cmds.pointPosition(verts[0])
         b = cmds.pointPosition(verts[1])
